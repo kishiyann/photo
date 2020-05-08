@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title PhotoConnect
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %link{:href => "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css", :rel => "stylesheet", :type => "text/css"}/
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js", :type => "text/javascript"}
+  %body.wrapper
+    %header.header
+      .header__bar
+        %h1.grid-6
+          %a{:href => "/"} PhotoConnect
+        - if user_signed_in?
+          .user_nav.grid-6
+            %span
+              = current_user.nickname
+              %ul.user__info
+                %li
+                  = link_to "マイページ", "/users/#{current_user.id}"
+                  = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to  "投稿する", "/tweets/new", class: "post"
+        - else
+          .grid-6
+            = link_to "ログイン", new_user_session_path, class: 'post'
+            = link_to "新規登録", new_user_registration_path, class: 'post'
+    = yield
