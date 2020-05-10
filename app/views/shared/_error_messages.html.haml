@@ -1,0 +1,5 @@
+-if @tweet.errors.any? 
+  .alert
+    %ul
+      -@tweet.errors.full_messages.each do |message|
+        %li= message

@@ -5,6 +5,7 @@ class CreateTweets < ActiveRecord::Migration[5.2]
       t.string :text
       t.text :image, null: false
       t.integer :user_id
+      t.integer :category_id, null: false
       t.timestamps
     end
   end

@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_032640) do
     t.string "text"
     t.text "image", null: false
     t.integer "user_id"
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
