@@ -1,42 +1,38 @@
-.wrapper
-  .signup-container
-    .signup-main
-      .title
-        会員情報入力
-      = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
-        = render "devise/shared/error_messages", resource: @user
-        .main
-          .input
-            .input__nickname
-              .input__nickname__text.SideType
-                .bold
-                  ニックネーム
-                .red
-                  必須
-              =f.text_field :nickname, autofocus: true, placeholder: "　例）フリマ太郎", class: "input__nickname__form", id: "nickname"
-            .input__email
-              .input__email__text.SideType
-                .bold
-                  メールアドレス
-                .red
-                  必須
-              = f.text_field :email, placeholder: "　PC・携帯どちらでも可", class: "input__email__form", id: "email"
-            .input__password
-              .input__password__text.SideType
-                .bold
-                  パスワード
-                .red
-                  必須
-              = f.password_field :password, autocomplete: "off", placeholder: "　7文字以上の半角英数字", class: "input__password__form", id: "password"
-            .input__password
-              .input__password__text.SideType
-                .bold
-                  パスワード(確認用)
-                .red
-                  必須
-              = f.password_field :password_confirmation, autocomplete: "off", placeholder: "　もう一度パスワードを入力してください", class: "input__password__form", id: "password2"
-              .input__submit__btn
-                = f.submit "新規登録", class: "btn", id: "Userinput__btn" 
-  .signup-footer
-    .signup-footer__bottom
-      © FURIMA 
+.signup-container
+  .signup-main
+    .title
+      会員情報入力
+    = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
+      = render "devise/shared/error_messages", resource: @user
+      .main
+        .input
+          .input__nickname
+            .input__nickname__text.SideType
+              .bold
+                ニックネーム
+              .red
+                必須
+            =f.text_field :nickname, autofocus: true, placeholder: "　例）フリマ太郎", class: "input__nickname__form", id: "nickname"
+          .input__email
+            .input__email__text.SideType
+              .bold
+                メールアドレス
+              .red
+                必須
+            = f.text_field :email, placeholder: "　PC・携帯どちらでも可", class: "input__email__form", id: "email"
+          .input__password
+            .input__password__text.SideType
+              .bold
+                パスワード
+              .red
+                必須
+            = f.password_field :password, autocomplete: "off", placeholder: "　7文字以上の半角英数字", class: "input__password__form", id: "password"
+          .input__password
+            .input__password__text.SideType
+              .bold
+                パスワード(確認用) 
+              .red
+                必須
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: "　もう一度パスワードを入力してください", class: "input__password__form", id: "password2"
+            .input__submit__btn
+              = f.submit "新規登録", class: "btn", id: "Userinput__btn" 

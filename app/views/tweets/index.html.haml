@@ -1,14 +1,80 @@
+.header
+  .header__bar
+    %h1.grid-6
+      %a{:href => "/"} しゃしん館
+    - if user_signed_in?
+      .user_nav.grid-6
+        %span
+          = current_user.nickname
+          %ul.user__info
+            %li
+              = link_to "マイページ", "/users/#{current_user.id}"
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+        = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
+          = f.text_field :keyword, placeholder: "検索する", class: "search-input"
+          = f.submit "検索", class: "search-btn"
+        = link_to  "投稿する", "/tweets/new", class: "post"
+    - else
+      .grid-6
+        = link_to "ログイン", new_user_session_path, class: 'post'
+        = link_to "新規登録", new_user_registration_path, class: 'post'
 .slider
   - @tweets.each do |tweet|
     = link_to "/tweets/#{tweet.id}", method: :get do
       .content_post{:style => "background-image: url(#{tweet.image});"}
-      = tweet.image
-      = simple_format(tweet.text)
-      %span.name
+        = simple_format(tweet.text)
+        %span.name
         = tweet.user.nickname
-.contents.row
+.contents
   - @tweets.each do |tweet|
     .content_post{:style => "background-image: url(#{tweet.image});"}
+      .more
+        %ul.more_list
+          %li
+            = link_to '編集', "/tweets/#{tweet.id}/edit", method: :get
+          %li
+            = link_to '削除', "/tweets/#{tweet.id}", method: :delete, data: {confirm: "本当に削除しますか？"}
       = simple_format(tweet.text)
       %span.name
         = tweet.user.nickname
+
+  -# .startheader
+  -#   = image_tag asset_path("header.png"), class: "header_image"
+  -# %section.headersection
+  -#   %ul
+  -#     %li 
+  -#       = link_to "#" do
+  -#         カテゴリーから探す
+  -#     %li 
+  -#       = link_to "#" do
+  -#         最新の投稿
+  -#     %li 
+  -#       = link_to "#" do
+  -#         投稿するにあたり
+  -# .startcontent
+  -#   %section
+  -#     = image_tag asset_path("IMG_0050.jpeg"),height: '300', class: "section_image"
+  -#     .info
+  -#       %h1 すごくきれい。
+  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
+  -#   %section
+  -#     = image_tag asset_path("IMG_0057.jpeg"),height: '300', class: "section_image"
+  -#     .info
+  -#       %h1 きれい。
+  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
+  -#   %section
+  -#     = image_tag asset_path("IMG_0225.jpeg"),height: '300', class: "section_image"
+  -#     .info
+  -#       %h1 きれい。
+  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
+  -#   %section
+  -#     = image_tag asset_path("IMG_0146.jpeg"),height: '300', class: "section_image"
+  -#     .info
+  -#       %h1 きれい。
+  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
+  -#   %section
+  -#     = image_tag asset_path("IMG_0145.jpeg"),height: '300', class: "section_image"
+  -#     .info
+  -#       %h1 きれい。
+  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
+

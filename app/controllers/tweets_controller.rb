@@ -6,12 +6,30 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @tweet = Tweet.new
+    @tweet = Tweet.new()
   end
 
   def create
-    Tweet.create(tweet_params)
-    redirect_to action: 'index'
+    @tweet = Tweet.create(tweet_params)
+    if @tweet.save
+      redirect_to action: 'index', notice: "投稿できました"
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def update
+    @tweet = Tweet.find(params[:id])
+    if @tweet.save
+      tweet.update(tweet_params)
+      redirect_to action: 'index'
+    else
+      render 'edit', notice: "編集が完了しました"
+    end
   end
 
   def destroy
