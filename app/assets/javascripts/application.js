@@ -17,23 +17,21 @@
 //= require jquery_ujs
 
 $(function() {
-  var ar = $('.slider').children();
+  var ar = $('#slider').children();
   ar.sort(function(){
   return Math.random()-Math.random();
   });
   for(i=0; i < ar.length; i++) {
-  $('.slider').html(ar)
+  $('#slider').html(ar)
   }
-  $('.slider').slick({
-      prevArrow:'<i class="fa fa-angle-left arrow arrow-left"></i>',
-      nextArrow:'<i class="fa fa-angle-right arrow arrow-right"></i>',
-      dots: false,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      speed: 800
-  });
-
-  $('.slick-dots li').on('mouseover', function() {
-    $('.slider').slick('goTo', $(this).index());
+  $('#slider').slick({
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear'
   });
 });

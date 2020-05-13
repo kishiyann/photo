@@ -1,72 +1,141 @@
-.header
-  .header__bar
-    %h1.grid-6
-      %a{:href => "/"} しゃしん館
-    - if user_signed_in?
-      .user_nav.grid-6
-        %span
-          = current_user.nickname
-          %ul.user__info
-            %li
-              = link_to "マイページ", "/users/#{current_user.id}"
-              = link_to "ログアウト", destroy_user_session_path, method: :delete
+- if user_signed_in?
+  -# .header
+  -#   .user_nav.grid-6
+  -#     %span
+  -#       = current_user.nickname
+  -#       %ul.user__info
+  -#         %li
+  -#           = link_to "マイページ", "/users/#{current_user.id}"
+  -#           = link_to "ログアウト", destroy_user_session_path, method: :delete
+  -#     = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
+  -#       = f.text_field :keyword, placeholder: "検索する", class: "search-input"
+  -#       = f.submit "検索", class: "search-btn"
+      -# = link_to  "投稿する", "/tweets/new", class: "post"
+  -#   .slider
+  -#     - @tweets.each do |tweet|
+  -#       = link_to "/tweets/#{tweet.id}", method: :get do
+  -#         .content_post{:style => "background-image: url(#{tweet.image});"}
+  -#           = simple_format(tweet.text)
+  -#           %span.name
+  -#           = tweet.user.nickname
+  -#   .contents
+  -#     - @tweets.each do |tweet|
+  -#       = render partial: "tweet", locals: {tweet: tweet}
+  -#     = paginate(@tweets)
+  .header
+    .headerin
+      .inner
+        .mainnav
+          %ul
+            %li.mainbtn.category
+              = link_to "#" do
+                Category
+            %li.mainbtn.service
+              = link_to "#" do
+                Service
+            %li.mainbtn.search
+              = link_to "#" do
+                Search
+        .title
+          = link_to "/" do
+            %h1 STUDIO PHT
+        .mainbtn
+          .sign_up
+            = link_to "マイページ", "/users/#{current_user.id}"
+          .sign_in
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to  "投稿する", "/tweets/new", class: "post"
         = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
-          = f.text_field :keyword, placeholder: "検索する", class: "search-input"
+          = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
           = f.submit "検索", class: "search-btn"
-        = link_to  "投稿する", "/tweets/new", class: "post"
-    - else
-      .grid-6
-        = link_to "ログイン", new_user_session_path, class: 'post'
-        = link_to "新規登録", new_user_registration_path, class: 'post'
-.slider
-  - @tweets.each do |tweet|
-    = link_to "/tweets/#{tweet.id}", method: :get do
-      .content_post{:style => "background-image: url(#{tweet.image});"}
-        = simple_format(tweet.text)
-        %span.name
-        = tweet.user.nickname
-.contents
-  - @tweets.each do |tweet|
-    = render partial: "tweet", locals: {tweet: tweet}
-  = paginate(@tweets)
-
-  -# .startheader
-  -#   = image_tag asset_path("header.png"), class: "header_image"
-  -# %section.headersection
-  -#   %ul
-  -#     %li 
-  -#       = link_to "#" do
-  -#         カテゴリーから探す
-  -#     %li 
-  -#       = link_to "#" do
-  -#         最新の投稿
-  -#     %li 
-  -#       = link_to "#" do
-  -#         投稿するにあたり
-  -# .startcontent
-  -#   %section
-  -#     = image_tag asset_path("IMG_0050.jpeg"),height: '300', class: "section_image"
-  -#     .info
-  -#       %h1 すごくきれい。
-  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
-  -#   %section
-  -#     = image_tag asset_path("IMG_0057.jpeg"),height: '300', class: "section_image"
-  -#     .info
-  -#       %h1 きれい。
-  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
-  -#   %section
-  -#     = image_tag asset_path("IMG_0225.jpeg"),height: '300', class: "section_image"
-  -#     .info
-  -#       %h1 きれい。
-  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
-  -#   %section
-  -#     = image_tag asset_path("IMG_0146.jpeg"),height: '300', class: "section_image"
-  -#     .info
-  -#       %h1 きれい。
-  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
-  -#   %section
-  -#     = image_tag asset_path("IMG_0145.jpeg"),height: '300', class: "section_image"
-  -#     .info
-  -#       %h1 きれい。
-  -#       %p きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。きれい。
-
+    #slider.slider
+      - @tweets.each do |tweet|
+        = link_to "/tweets/#{tweet.id}", method: :get do
+          .content_post{:style => "background-image: url(#{tweet.image});"}
+            .content_post__title
+              = tweet.title
+            .content_post__nickname
+              = tweet.user.nickname
+    .contents
+      .view
+        - @tweets.each do |tweet|
+          = render partial: "tweet", locals: {tweet: tweet}
+      = paginate(@tweets)
+- else
+  .header
+    .headerwrap
+      .inner
+        .mainnav
+          %ul
+            %li.mainbtn.category
+              = link_to "#" do
+                Category
+            %li.mainbtn.service
+              = link_to "#" do
+                Service
+            %li.mainbtn.about
+              = link_to "#" do
+                About
+        .title
+          %h1 STUDIO PHT
+        .mainbtn
+          .sign_up
+            = link_to "新規登録", new_user_registration_path
+          .sign_in
+            = link_to "ログイン", new_user_session_path
+  %main
+    .inner
+      %section.mv.opacity
+        .topview{:style => "width: 100%;background-image: url(\"https://www.pakutaso.com/shared/img/thumb/171116AMEMAN011_TP_V.jpg\");"}
+          .maincopy
+            %h2.subtitle
+              EDITORIAL
+              %br/
+              STUDIO
+              %br/
+              IN KYOTO
+              %br/
+              JAPAN
+            %span.info
+              We are Editorial Studio that expend various projects
+              %br/
+              through editing and desgin based on the concept of
+              %br/
+              delivering beautiful stories to the ives of the
+              %br/
+              people.
+          .scrollbtn
+            = link_to "#" do
+              Click to Scroll
+          .guide
+            .left
+              .info
+                Latest Info
+              .data
+                2020.1.16
+              .comment
+                旅の始まりと静かな湖
+            .right{:style => "background-image: url(\"https://studio-has.jp/wp-content/uploads/2020/01/20200114.jpg\");"}
+      %section.latest
+        .latestinner
+          .latestinner__title
+            %h3 あなたの素敵な一番を
+            %p あなたの素敵な一枚を
+          .latestinner__text
+            ここはみんなの好きが集まる場所
+            %br/
+            みんなが楽しい気分になれる場所
+            %br/
+            見たこともない行ったこともない場所を
+            %br/
+            体験しているかのような気分になれる場所
+            %br/
+            あなたの好きな一枚、素敵な一番を
+            %br/
+            共有してみませんか？
+          .latestinner__images
+            .latestinner__images__image1{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/elly20160628092222_TP_V.jpg\");"}
+            .latestinner__images__image2{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/NS642_antero-pukyanionsuna_TP_V.jpg\");"}
+            .latestinner__images__image3{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/MIYA151230489758_TP_V.jpg\");"}
+            .latestinner__images__image4{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/MIYADSC_3425-3_TP_V.jpg\");"}
+    .footer

@@ -1,9 +1,13 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:edit, :show]
   before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @tweets = Tweet.includes(:user).order("created_at DESC").page(params[:page]).per(15)
+    if params[:category_id]
+      @tweets = Tweet.where(category_id: params[:category_id]).order("created_at DESC").page(params[:page]).per(15)
+      render action: 'index'
+    else
+      @tweets = Tweet.includes(:user).order("created_at DESC").page(params[:page]).per(15)
+    end
   end
 
   def new
@@ -20,6 +24,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
+    @tweet = Tweet.find(params[:id])
   end
 
   def update
@@ -39,6 +44,7 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @tweet = Tweet.find(params[:id])
     @comment = Comment.new
     @comments = @tweet.comments.includes(:user)
   end
@@ -50,10 +56,6 @@ class TweetsController < ApplicationController
   private
   def tweet_params
     params.require(:tweet).permit(:title, :category_id, :image, :text).merge(user_id: current_user.id)
-  end
-
-  def set_tweet
-    @tweet = Tweet.find(params[:id])
   end
 
   def move_to_index
