@@ -1,3 +1,18 @@
-.contents
-  - @tweets.each do |tweet|
-    = render partial: "tweet", locals: {tweet: tweet}
+.header
+  .headerin
+    .inner
+      .title
+        = link_to "/" do
+          %h1 STUDIO PHT
+  #slider.slider
+    - @tweets.each do |tweet|
+      = link_to "/tweets/#{tweet.id}", method: :get do
+        .content_post{:style => "background-image: url(#{tweet.image});"}
+          .content_post__title
+            = tweet.title
+          .content_post__nickname
+            = tweet.user.nickname
+  .contents
+    .view
+      - @tweets.each do |tweet|
+        = render partial: "tweet", locals: {tweet: tweet}

@@ -1,13 +1,6 @@
-.content_post{:style => "background-image: url(#{tweet.image});"}
-  .more
-    %ul.more_list
-      %li
-        = link_to '詳細', "tweets/#{tweet.id}", method: :get
-      - if user_signed_in? && current_user.id == tweet.user_id
-        %li
-          = link_to '編集', "/tweets/#{tweet.id}/edit", method: :get
-        %li
-          = link_to '削除', "/tweets/#{tweet.id}", method: :delete, data: {confirm: "本当に削除しますか？"}
-  = (tweet.text).truncate(7, separator: '.')
-  %span.name
-    = tweet.user.nickname
+= link_to "/tweets/#{tweet.id}", method: :get do
+  .content_post{:style => "width:100%;background-image: url(#{tweet.image});"}
+    %span.title
+      = tweet.title
+    %span.name
+      = tweet.user.nickname
