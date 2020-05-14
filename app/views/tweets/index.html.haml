@@ -1,53 +1,26 @@
 - if user_signed_in?
-  -# .header
-  -#   .user_nav.grid-6
-  -#     %span
-  -#       = current_user.nickname
-  -#       %ul.user__info
-  -#         %li
-  -#           = link_to "マイページ", "/users/#{current_user.id}"
-  -#           = link_to "ログアウト", destroy_user_session_path, method: :delete
-  -#     = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
-  -#       = f.text_field :keyword, placeholder: "検索する", class: "search-input"
-  -#       = f.submit "検索", class: "search-btn"
-      -# = link_to  "投稿する", "/tweets/new", class: "post"
-  -#   .slider
-  -#     - @tweets.each do |tweet|
-  -#       = link_to "/tweets/#{tweet.id}", method: :get do
-  -#         .content_post{:style => "background-image: url(#{tweet.image});"}
-  -#           = simple_format(tweet.text)
-  -#           %span.name
-  -#           = tweet.user.nickname
-  -#   .contents
-  -#     - @tweets.each do |tweet|
-  -#       = render partial: "tweet", locals: {tweet: tweet}
-  -#     = paginate(@tweets)
   .header
     .headerin
       .inner
         .mainnav
-          %ul
-            %li.mainbtn.category
-              = link_to "#" do
-                Category
-            %li.mainbtn.service
-              = link_to "#" do
-                Service
-            %li.mainbtn.search
-              = link_to "#" do
-                Search
+          .category
+            %label{:for => "label1"} Category
+            %input#label1{:type => "checkbox"}/
+            = render 'tweets/category'
+          .search
+            = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
+              = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
+              = f.submit "検索", class: "search-btn"
         .title
           = link_to "/" do
             %h1 STUDIO PHT
         .mainbtn
+          .tweet
+            = link_to  "投稿する", "/tweets/new", class: "post"
           .sign_up
             = link_to "マイページ", "/users/#{current_user.id}"
           .sign_in
             = link_to "ログアウト", destroy_user_session_path, method: :delete
-            = link_to  "投稿する", "/tweets/new", class: "post"
-        = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
-          = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
-          = f.submit "検索", class: "search-btn"
     #slider.slider
       - @tweets.each do |tweet|
         = link_to "/tweets/#{tweet.id}", method: :get do
@@ -65,17 +38,6 @@
   .header
     .headerwrap
       .inner
-        .mainnav
-          %ul
-            %li.mainbtn.category
-              = link_to "#" do
-                Category
-            %li.mainbtn.service
-              = link_to "#" do
-                Service
-            %li.mainbtn.about
-              = link_to "#" do
-                About
         .title
           %h1 STUDIO PHT
         .mainbtn
@@ -89,24 +51,13 @@
         .topview{:style => "width: 100%;background-image: url(\"https://www.pakutaso.com/shared/img/thumb/171116AMEMAN011_TP_V.jpg\");"}
           .maincopy
             %h2.subtitle
-              EDITORIAL
+              THAT WAS
               %br/
-              STUDIO
+              A VERY
               %br/
-              IN KYOTO
+              WONDERFUL
               %br/
-              JAPAN
-            %span.info
-              We are Editorial Studio that expend various projects
-              %br/
-              through editing and desgin based on the concept of
-              %br/
-              delivering beautiful stories to the ives of the
-              %br/
-              people.
-          .scrollbtn
-            = link_to "#" do
-              Click to Scroll
+              TIME
           .guide
             .left
               .info
@@ -139,3 +90,25 @@
             .latestinner__images__image3{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/MIYA151230489758_TP_V.jpg\");"}
             .latestinner__images__image4{:style => "background-image: url(\"https://www.pakutaso.com/shared/img/thumb/MIYADSC_3425-3_TP_V.jpg\");"}
     .footer
+      .inner
+        .left
+          %p STUDIO PHTについて
+          %ul
+            %li STUDIO PHTニュース
+            %li ご利用ガイド
+            %li Q & A
+            %li お問い合わせ
+        .center
+          %p ご利用にあたって
+          %ul
+            %li 利用規約
+            %li ガイドライン
+            %li 特定商取引法に基づく表記
+            %li 個人情報保護法方針
+        .right
+          %p 公式アカウント
+          %ul
+            %li Facebook公式
+            %li Twitter公式アカウント
+        .logo
+          ©︎STUDIO PHT

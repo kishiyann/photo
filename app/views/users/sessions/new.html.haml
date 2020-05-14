@@ -1,3 +1,4 @@
+= render 'tweets/header'
 .signin-container
   .signin-main
     .registration
@@ -17,3 +18,4 @@
             = f.submit "ログイン", class: "btn"
             - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
               = link_to "パスワードをお忘れの方", new_password_path(resource_name), class: "forget"
+= render 'tweets/footer'

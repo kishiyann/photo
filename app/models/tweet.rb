@@ -5,7 +5,7 @@ class Tweet < ApplicationRecord
   belongs_to_active_hash :category
   mount_uploader :image, ImageUploader, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 15 }
   validates :image, presence: true
   validates :category_id, presence: true
 

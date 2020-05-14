@@ -1,6 +1,11 @@
 .header
   .headerin
     .inner
+      .mainnav
+        .search
+          = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
+            = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
+            = f.submit "検索", class: "search-btn"
       .title
         = link_to "/" do
           %h1 STUDIO PHT
