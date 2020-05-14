@@ -8,6 +8,3 @@ ja:
         category_id: カテゴリー
         image: 画像
         comments: コメント
-    errors:
-      messages:
-        too_short: は1文字以上30文字以内で入力してください
