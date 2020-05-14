@@ -1,3 +1,4 @@
+= render 'tweets/header'
 .signup-container
   .signup-main
     .title
@@ -12,7 +13,7 @@
                 ニックネーム
               .red
                 必須
-            =f.text_field :nickname, autofocus: true, placeholder: "　例）フリマ太郎", class: "input__nickname__form", id: "nickname"
+            =f.text_field :nickname, autofocus: true, placeholder: "　例）ニック", class: "input__nickname__form", id: "nickname"
           .input__email
             .input__email__text.SideType
               .bold
@@ -35,4 +36,5 @@
                 必須
             = f.password_field :password_confirmation, autocomplete: "off", placeholder: "　もう一度パスワードを入力してください", class: "input__password__form", id: "password2"
             .input__submit__btn
-              = f.submit "新規登録", class: "btn", id: "Userinput__btn" 
+              = f.submit "新規登録", class: "btn", id: "Userinput__btn"
+= render 'tweets/footer'

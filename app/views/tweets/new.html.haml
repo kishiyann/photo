@@ -1,12 +1,20 @@
+= render 'tweets/header'
 .row
   .container
     = form_with(model: @tweet, local: true) do |f|
       %h3
         投稿する
       = render 'shared/error_messages', model: f.object
-      = f.text_field :title, placeholder: "タイトル"
-      = f.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" } 
-      = f.file_field :image
-      -# = f.text_field :image, placeholder: "投稿画像"
-      = f.text_area :text, placeholder: "コメント" , rows: "10"
+      = f.text_field :title, placeholder: "タイトル(15文字以内)[必須]"
+      = f.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリー選択[必須]" } 
+      = f.label 'サムネイル（スクリーンショットなど）[必須]'
+      #img_field{:onclick => "$('#file').click()"}
+        - if @tweet.image.url.present?
+          = image_tag(@tweet.image.url)
+        - else
+          %i.fas.fa-image
+          %i.fas.fa-file-upload.add
+      = f.file_field :image, class: "image", style: "display:none;", id: "file"
+      = f.text_area :text, placeholder: "コメント(30文字以内)[任意]" , rows: "10"
       = f.submit "SEND"
+

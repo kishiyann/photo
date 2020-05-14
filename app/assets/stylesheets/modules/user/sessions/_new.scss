@@ -16,7 +16,7 @@ a.forget{
 
 
 .btn{
-  background-color: #ea352d;
+  background-color: #555555;
   color: white;
   height: 50px;
   width: 100%;
@@ -28,18 +28,15 @@ a.forget{
   background-color: #f5f5f5;
 }
 .signin-container {
-  font-family: 'arial';
-  background-color: #f5f5f5;
+  height: 60vh;
   .signin-main {
     color: #333;
-    background-color: white;
     width: 500px;
-    margin: 0 auto;
+    margin: 50px auto;
     .registration{
       height: 100%;
       width: 343px;
       margin: 0 auto;
-      background-color: #fff;
       border-bottom: solid 1px rgb(239, 239, 239);
       text-align: center;
       &__text{
@@ -48,7 +45,7 @@ a.forget{
       }
       &__btn{
         text-decoration: none;
-        background-color: #ea352d;
+        background-color: #555555;
         color: white;
         height: 50px;
         width: 100%;
@@ -59,7 +56,6 @@ a.forget{
       }
     }
     .main{
-      background-color: white;
       .input{
         font-size: 14px;
         height: 100%;

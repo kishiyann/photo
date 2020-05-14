@@ -1,10 +1,11 @@
 .row {
+  padding: 80px;
   .container {
-    padding: 90px 300px;
+    margin: 0 auto;
+    width: 60%;
     padding: 10px;
     box-shadow: 0 0 10px rgba($black,0.2);
     background-color: $white;
-    box-sizing: border-box;
     form {
       h3 {
         margin: 0 auto;
@@ -13,7 +14,17 @@
         font-size: 20px;
         color: $dark;
       }
-      input,textarea {
+      input {
+        height: 40px;
+        width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        font-family: "游ゴシック", "YuGothic";
+      }
+      textarea {
+        height: 200px;
         width: 100%;
         margin: 10px auto;
         padding: 10px;
@@ -22,15 +33,72 @@
         font-family: "游ゴシック", "YuGothic";
       }
       input[type="submit"] {
-        background-color: $accent;
+        background-color: $black;
         border-radius: 20px;
-        color: #fff;
+        color: $white;
         border: 0;
         font-size: 18px;
         &:hover {
-          background-color: lighten(#57C3E9, 10%);
+          background-color: lighten($black, 10%);
         }
       }
     }
   }
+}
+
+#tweet_category_id {
+  height: 50px;
+  width: 200px;
+  float: left;
+  margin-top: 50px;
+  font-size: 1.6rem;
+}
+
+#img_field {
+  margin-left: 46.5%;
+  font-size: 15px;
+  margin-top: 10px;
+  padding: 5px 8px;
+  border: solid 1px #d8d8d8;
+  color: #666;
+  position: relative;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 400px;
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+}
+ 
+#img_field i {
+  font-size: 100px;
+  color: #aaa;
+  line-height: 250px;
+  transition: 0.3s ease-out;
+}
+ 
+#img_field i.add {
+  display: none;
+  font-size: 50px;
+  position: absolute;
+  top: -90px;
+  right: 15px;
+}
+ 
+#img_field:hover {
+  background-color: #EDBC6C;
+  transition: 0.3s ease-out;
+  opacity: 0.9;
+}
+ 
+#img_field:hover i {
+  transition: 0.3s ease-out;
+  display: block;
+  color: #fff;
 }

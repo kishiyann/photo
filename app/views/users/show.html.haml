@@ -1,8 +1,20 @@
-.content
+.header
+  .headerin
+    .inner
+      .mainnav
+      .title
+        = link_to "/" do
+          %h1 STUDIO PHT
+      .mainbtn
+        .sign_up
+          = link_to "マイページ", "/users/#{current_user.id}"
+        .sign_in
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+.contents
   %p
-    = @nickname
-    さんの投稿一覧
-  - @tweets.each do |tweet|
-    .content_post{:style => "background-image: url(#{tweet.image});"}
-      = (tweet.text).truncate(7, separator: '.')
+    投稿一覧
+  .view
+    - @tweets.each do |tweet|
+      .content_post{:style => "background-image: url(#{tweet.image});"}
+        = (tweet.text).truncate(7, separator: '.')
   = paginate(@tweets)
