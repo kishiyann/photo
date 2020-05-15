@@ -14,7 +14,7 @@
         - else
           %i.fas.fa-image
           %i.fas.fa-file-upload.add
-      = f.file_field :image, class: "image",style: "display:none;" id: "file"
+      = f.file_field :image, class: "image",style: "display:none;", id: "file"
       = f.text_area :text, placeholder: "コメント(30文字以内)[任意]" , rows: "10"
       = f.submit "SEND"
 
