@@ -1,15 +1,4 @@
-.header
-  .headerin
-    .inner
-      .mainnav
-      .title
-        = link_to "/" do
-          %h1 STUDIO PHT
-      .mainbtn
-        .sign_up
-          = link_to "マイページ", "/users/#{current_user.id}"
-        .sign_in
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
+= render 'tweets/header'
 .contents
   %p
     投稿一覧
