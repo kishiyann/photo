@@ -39,11 +39,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def check_guest
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
-    end
-  end
+  # def check_guest
+  #   if resource.email == 'guest@example.com'
+  #     redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+  #   end
+  # end
 
   # protected
 
