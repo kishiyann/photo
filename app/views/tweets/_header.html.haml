@@ -1,6 +1,29 @@
 .header
   .headerin
     .inner
+      .mainnav
+        .category
+          %label{:for => "label1"} Category
+          %input#label1{:type => "checkbox"}/
+          = render 'tweets/category'
+        .search
+          = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
+            = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
+            = f.submit "検索", class: "search-btn"
       .title
         = link_to "/" do
           %h1 STUDIO PHT
+      - if user_signed_in?
+        .mainbtn
+          .tweet
+            = link_to  "投稿する", "/tweets/new", class: "post"
+          .sign_up
+            = link_to "マイページ", "/users/#{current_user.id}"
+          .sign_in
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+      - else
+        .mainbtn
+          .sign_up
+            = link_to "新規登録", new_user_registration_path
+          .sign_in
+            = link_to "ログイン", new_user_session_path

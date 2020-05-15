@@ -1,65 +1,37 @@
-.header
-  .headerin
-    .inner
-      .mainnav
-        .category
-          %label{:for => "label1"} Category
-          %input#label1{:type => "checkbox"}/
-          = render 'tweets/category'
-        .search
-          = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
-            = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
-            = f.submit "検索", class: "search-btn"
-      .title
-        = link_to "/" do
-          %h1 STUDIO PHT
-      - if user_signed_in?
-        .mainbtn
-          .tweet
-            = link_to  "投稿する", "/tweets/new", class: "post"
-          .sign_up
-            = link_to "マイページ", "/users/#{current_user.id}"
-          .sign_in
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
-      - else
-        .mainbtn
-          .sign_up
-            = link_to "新規登録", new_user_registration_path
-          .sign_in
-            = link_to "ログイン", new_user_session_path
-  #slider.slider
+= render 'tweets/header'
+#slider.slider
+  - @tweets.each do |tweet|
+    = link_to "/tweets/#{tweet.id}", method: :get do
+      .content_post{:style => "background-image: url(#{tweet.image});"}
+        .content_post__title
+          = tweet.title
+        .content_post__nickname
+          = tweet.user.nickname
+.contents
+  .view
     - @tweets.each do |tweet|
-      = link_to "/tweets/#{tweet.id}", method: :get do
-        .content_post{:style => "background-image: url(#{tweet.image});"}
-          .content_post__title
-            = tweet.title
-          .content_post__nickname
-            = tweet.user.nickname
-  .contents
-    .view
-      - @tweets.each do |tweet|
-        = render partial: "tweet", locals: {tweet: tweet}
-    = paginate(@tweets)
-  .footer
-    .inner
-      .left
-        %p STUDIO PHTについて
-        %ul
-          %li STUDIO PHTニュース
-          %li ご利用ガイド
-          %li Q & A
-          %li お問い合わせ
-      .center
-        %p ご利用にあたって
-        %ul
-          %li 利用規約
-          %li ガイドライン
-          %li 特定商取引法に基づく表記
-          %li 個人情報保護法方針
-      .right
-        %p 公式アカウント
-        %ul
-          %li Facebook公式
-          %li Twitter公式アカウント
-      .logo
-        ©︎STUDIO PHT
+      = render partial: "tweet", locals: {tweet: tweet}
+  = paginate(@tweets)
+.footer
+  .inner
+    .left
+      %p STUDIO PHTについて
+      %ul
+        %li STUDIO PHTニュース
+        %li ご利用ガイド
+        %li Q & A
+        %li お問い合わせ
+    .center
+      %p ご利用にあたって
+      %ul
+        %li 利用規約
+        %li ガイドライン
+        %li 特定商取引法に基づく表記
+        %li 個人情報保護法方針
+    .right
+      %p 公式アカウント
+      %ul
+        %li Facebook公式
+        %li Twitter公式アカウント
+    .logo
+      ©︎STUDIO PHT

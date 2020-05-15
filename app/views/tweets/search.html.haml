@@ -1,23 +1,13 @@
-.header
-  .headerin
-    .inner
-      .mainnav
-        .search
-          = form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |f|
-            = f.text_field :keyword, placeholder: "タイトルを検索", class: "search-input"
-            = f.submit "検索", class: "search-btn"
-      .title
-        = link_to "/" do
-          %h1 STUDIO PHT
-  #slider.slider
+= render 'tweets/header'
+#slider.slider
+  - @tweets.each do |tweet|
+    = link_to "/tweets/#{tweet.id}", method: :get do
+      .content_post{:style => "background-image: url(#{tweet.image});"}
+        .content_post__title
+          = tweet.title
+        .content_post__nickname
+          = tweet.user.nickname
+.contents
+  .view
     - @tweets.each do |tweet|
-      = link_to "/tweets/#{tweet.id}", method: :get do
-        .content_post{:style => "background-image: url(#{tweet.image});"}
-          .content_post__title
-            = tweet.title
-          .content_post__nickname
-            = tweet.user.nickname
-  .contents
-    .view
-      - @tweets.each do |tweet|
-        = render partial: "tweet", locals: {tweet: tweet}
+      = render partial: "tweet", locals: {tweet: tweet}

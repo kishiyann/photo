@@ -23,19 +23,6 @@ class TweetsController < ApplicationController
     end
   end
 
-  def edit
-    @tweet = Tweet.find(params[:id])
-  end
-
-  def update
-    @tweet = Tweet.find(params[:id])
-    if @tweet.save
-      tweet.update(tweet_params)
-      redirect_to action: 'index'
-    else
-      render 'edit', notice: "編集が完了しました"
-    end
-  end
 
   def destroy
     tweet = Tweet.find(params[:id])
