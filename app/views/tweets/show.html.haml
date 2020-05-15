@@ -24,6 +24,9 @@
         - @comments.each do |comment|
           %p
             %strong
+            - if current_user
               = link_to comment.user.nickname, "/users/#{comment.user_id}"
+            - else
+              = comment.user.nickname
             = comment.text
 = render 'tweets/footer'
