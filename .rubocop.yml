@@ -1,0 +1,43 @@
+# 将来的には対応する規約の読込
+inherit_from: .rubocop_todo.yml
+
+# 追加した規約ファイル読込
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.5.1
+  # 手を付けていないファイルを除外
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
+    - 'app/controllers/users/confirmations_controller.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/controllers/users/unlocks_controller.rb'
+    - 'test/test_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'db/migrate/20200418025459_devise_create_users.rb'
+    - 'db/schema.rb'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+
+AsciiComments:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 154
+
+Metrics/BlockLength:
+  Max: 100
+
+Metrics/AbcSize:
+  Max: 25
