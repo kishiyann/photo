@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tweet < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
@@ -11,6 +13,7 @@ class Tweet < ApplicationRecord
 
   def self.search(search)
     return Tweet.all unless search
+
     Tweet.where('title LIKE(?)', "%#{search}%")
   end
 end

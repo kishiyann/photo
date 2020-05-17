@@ -1,23 +1,29 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe Tweet do
   describe '#create' do
-
-    it "titleがない場合は登録できないこと" do
-      tweet = build(:tweet, title: "")
-      tweet.valid?
-      expect(tweet.errors[:title]).to include("を入力してください")
+    it '全てが存在すれば登録できること' do
+      tweet = build(:tweet)
+      expect(tweet).to be_valid
     end
 
-    it "imageがない場合は登録できないこと" do
-      tweet = build(:tweet, image: "")
+    it 'titleがない場合は登録できないこと' do
+      tweet = build(:tweet, title: '')
       tweet.valid?
-      expect(tweet.errors[:image]).to include("を入力してください")
+      expect(tweet.errors[:title]).to include('を入力してください')
     end
 
-    it "category_idがない場合は登録できないこと" do
-      tweet = build(:tweet, category_id: "")
+    it 'imageがない場合は登録できないこと' do
+      tweet = build(:tweet, image: '')
       tweet.valid?
-      expect(tweet.errors[:category_id]).to include("を入力してください")
+      expect(tweet.errors[:image]).to include('を入力してください')
+    end
+
+    it 'category_idがない場合は登録できないこと' do
+      tweet = build(:tweet, category_id: '')
+      tweet.valid?
+      expect(tweet.errors[:category_id]).to include('を入力してください')
     end
   end
 end
