@@ -37,3 +37,45 @@
 twitterやテレビなのでとても綺麗な写真を見ることがよくあると思います。<br>
 それを見て「すごく綺麗」「自分もそこに行ってみたい！」など思うことが必ずあると思います。<br>
 そんな人の心を動かすことのできる写真や素晴らしいのに埋もれてしまっているものを多くの人と共有することのできる場所、多くの人の心を動かせる場所を作りたいと思いこの投稿サイトを作りました。
+
+## 工夫したポイント
+1.サイトの主役である写真を前面に押し出すためにシンプルなデザインにしました。<br>
+2.スライドショーを追加することで埋もれてしまう画像が出てこないようにしました。<br>
+3.コメント機能で自分の投稿への反応を見られるようにしました。
+
+## 課題、今後実装したい機能
+課題はテストがまだ完璧にはかけていない為充実させていく。<br>
+*今後実装したい機能*
+1.いいね機能
+2.自分のいいねした投稿の一覧表示
+3.フォロー機能
+
+## DB設計
+### userテーブル
+|column|type|options|
+|------|----|-------|
+|email|string|null: false|
+|password|string|null: false|
+|nickname|string|null: false|
+#### Association
+ - has_many :tweets, dependent: :destroy
+ - has_many :comments, dependent: :destroy
+### tweetテーブル
+|column|type|options|
+|------|----|-------|
+|title|string|null: false|
+|text|string||
+|image|string|null: false|
+|user_id|integer||
+|category_id|integer|null: false|
+#### Association
+ - belongs_to :user
+ - has_many :comments, dependent: :destroy
+ - belongs_to_active_hash :category
+ - mount_uploader :image, ImageUploader, dependent: :destroy
+### commentテーブル
+|column|type|options|
+|------|----|-------|
+|user_id|integer||
+|tweet_id|integer||
+|text|text||
