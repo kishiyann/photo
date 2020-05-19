@@ -1,5 +1,7 @@
 ![gorimepresetV2_TP_V](https://user-images.githubusercontent.com/62429329/82107954-6084dd80-9766-11ea-9aef-3f940f339267.jpg)
 ページIPアドレス：http://54.248.177.20/
+ID : admin
+password : 2222
 # :camera: Function  
 ## １、ホーム
 <img width="1440" alt="スクリーンショット 2020-05-16 10 52 51" src="https://user-images.githubusercontent.com/62429329/82108150-852d8500-9767-11ea-851d-f3584d187c0d.png"> 
