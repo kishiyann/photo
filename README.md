@@ -1,5 +1,5 @@
 ![gorimepresetV2_TP_V](https://user-images.githubusercontent.com/62429329/82107954-6084dd80-9766-11ea-9aef-3f940f339267.jpg)
-ページIPアドレス：http://54.248.177.20/.   <br>
+ページIPアドレス：http://54.248.177.20/.    <br>
 
 # :camera: Function  
 ## １、ホーム
